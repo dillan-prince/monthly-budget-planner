@@ -10,7 +10,11 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "npm run start"
+    "server": "nodemon ./server/index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild":
+      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +22,9 @@
     "express": "^4.16.2"
   },
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "eslint": "^4.15.0",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.5.1",
+    "nodemon": "^1.14.11"
   }
 }
