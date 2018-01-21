@@ -9,6 +9,8 @@ import Landing from './Landing';
 import Dashboard from './Dashboard';
 
 class App extends Component {
+  state = { showLoginModal: false };
+
   componentDidMount() {
     this.props.fetchUser();
   }
@@ -18,13 +20,17 @@ class App extends Component {
       <div className="container">
         <BrowserRouter>
           <div>
-            <Header />
-            <Route path="/" component={Landing} exact />
+            <Header onLoginClicked={() => this.setState({ showLoginModal: true })} />
+            <Route path="/" component={this.renderLanding.bind(this)} exact />
             <Route path="/dashboard" component={Dashboard} exact />
           </div>
         </BrowserRouter>
       </div>
     );
+  }
+
+  renderLanding() {
+    return <Landing showLoginModal={this.state.showLoginModal} />;
   }
 }
 

@@ -29,7 +29,7 @@ class Header extends Component {
       case false:
         return (
           <li>
-            <a href="/api/authentication/google">Login</a>
+            <a onClick={() => this.props.onLoginClicked()}>Login</a>
           </li>
         );
       default:
