@@ -29,7 +29,7 @@ class Header extends Component {
       case false:
         return (
           <li>
-            <a onClick={() => this.props.onLoginClicked()}>Login</a>
+            <a onClick={() => this.props.onLoginClicked()}>Log in</a>
           </li>
         );
       default:

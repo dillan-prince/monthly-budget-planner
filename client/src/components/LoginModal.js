@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 
+import fbLogo from '../assets/FB-f-Logo__white_29.png';
+import googleLogo from '../assets/g-logo.png';
+
 class LoginModal extends Component {
   state = { showLoginModal: this.props.showLoginModal };
 
@@ -13,7 +16,8 @@ class LoginModal extends Component {
         bottom: 'auto',
         transform: 'translate(-50%, -50%)',
         width: '300px',
-        height: '215px'
+        height: '225px',
+        overflow: 'hidden'
       }
     };
 
@@ -30,19 +34,25 @@ class LoginModal extends Component {
             <div>
               <a
                 href="/api/authentication/facebook"
-                className="btn blue"
-                style={{ width: '150px', height: '36px', padding: '0', marginBottom: '10px' }}
+                className="btn"
+                style={{
+                  width: '130px',
+                  height: '36px',
+                  padding: '0',
+                  marginBottom: '10px',
+                  backgroundColor: '#4267b2'
+                }}
               >
                 <div>
                   <img
                     className="left"
-                    src="https://picsee.co/images/social_facebook.png"
+                    src={fbLogo}
                     alt="facebook_logo"
                     width="32"
                     height="32"
                     style={{ margin: '2px 0 0 2px' }}
                   />
-                  <span className="right" style={{ marginRight: '20px' }}>
+                  <span className="right" style={{ marginRight: '8.79px' }}>
                     Facebook
                   </span>
                 </div>
@@ -52,18 +62,18 @@ class LoginModal extends Component {
               <a
                 href="/api/authentication/google"
                 className="btn white black-text"
-                style={{ width: '150px', height: '36px', padding: '0', marginBottom: '10px' }}
+                style={{ width: '130px', height: '36px', padding: '0', marginBottom: '10px' }}
               >
                 <div>
                   <img
                     className="left"
-                    src="https://developers.google.com/identity/images/g-logo.png"
+                    src={googleLogo}
                     alt="google_logo"
                     width="32"
                     height="32"
                     style={{ margin: '2px 0 0 2px' }}
                   />
-                  <span className="right" style={{ marginRight: '28.5px' }}>
+                  <span className="right" style={{ marginRight: '17.67px' }}>
                     Google
                   </span>
                 </div>
