@@ -6,13 +6,13 @@ class Header extends Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper">
+        <div className="nav-wrapper green darken-2">
           <Link
             to={this.props.user ? '/dashboard' : '/'}
             style={{ paddingLeft: '15px' }}
             className="left brand-logo"
           >
-            Budgetly
+            Budget EZ
           </Link>
           <ul id="nav-mobile" className="right">
             {this.renderContent()}

@@ -13,7 +13,7 @@ class LoginModal extends Component {
         bottom: 'auto',
         transform: 'translate(-50%, -50%)',
         width: '300px',
-        height: '200px'
+        height: '215px'
       }
     };
 
@@ -28,13 +28,45 @@ class LoginModal extends Component {
           <div className="center-align">
             <h4>Log in with...</h4>
             <div>
-              <a href="/api/authentication/facebook" className="btn blue">
-                Facebook
+              <a
+                href="/api/authentication/facebook"
+                className="btn blue"
+                style={{ width: '150px', height: '36px', padding: '0', marginBottom: '10px' }}
+              >
+                <div>
+                  <img
+                    className="left"
+                    src="https://picsee.co/images/social_facebook.png"
+                    alt="facebook_logo"
+                    width="32"
+                    height="32"
+                    style={{ margin: '2px 0 0 2px' }}
+                  />
+                  <span className="right" style={{ marginRight: '20px' }}>
+                    Facebook
+                  </span>
+                </div>
               </a>
             </div>
             <div>
-              <a href="/api/authentication/google" className="btn red">
-                Google
+              <a
+                href="/api/authentication/google"
+                className="btn white black-text"
+                style={{ width: '150px', height: '36px', padding: '0', marginBottom: '10px' }}
+              >
+                <div>
+                  <img
+                    className="left"
+                    src="https://developers.google.com/identity/images/g-logo.png"
+                    alt="google_logo"
+                    width="32"
+                    height="32"
+                    style={{ margin: '2px 0 0 2px' }}
+                  />
+                  <span className="right" style={{ marginRight: '28.5px' }}>
+                    Google
+                  </span>
+                </div>
               </a>
             </div>
           </div>

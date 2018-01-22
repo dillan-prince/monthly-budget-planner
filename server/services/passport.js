@@ -29,7 +29,11 @@ passport.use(
         return done(null, existingUser);
       }
 
-      const newUser = await new User({ id: profile.id, authType: 'google' }).save();
+      const newUser = await new User({
+        id: profile.id,
+        authType: 'google',
+        name: profile.name.givenName
+      }).save();
       done(null, newUser);
     }
   )
