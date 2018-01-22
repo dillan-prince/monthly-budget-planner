@@ -21,6 +21,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header onLoginClicked={() => this.setState({ showLoginModal: true })} />
+
             <Route path="/" component={this.renderLanding.bind(this)} exact />
             <Route path="/dashboard" component={Dashboard} exact />
           </div>

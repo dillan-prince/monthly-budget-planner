@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Calendar from './calendar/Calendar';
+
 class Dashboard extends Component {
   render() {
     return (
       <div>
-        <h1>Hi{this.props.user ? `, ${this.props.user.name}!` : '!'}</h1>
+        <h3>
+          Hey{this.props.user ? `, ${this.props.user.name}!` : '!'} Here's your monthly budget:
+        </h3>
+        <hr />
+        <Calendar />
       </div>
     );
   }

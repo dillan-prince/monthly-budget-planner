@@ -9,6 +9,9 @@ class LoginModal extends Component {
 
   render() {
     const customStyles = {
+      overlay: {
+        backgroundColor: 'rgba(0, 0, 0, .5)'
+      },
       content: {
         top: '25%',
         left: '50%',
