@@ -5,8 +5,6 @@ import fbLogo from '../assets/FB-f-Logo__white_29.png';
 import googleLogo from '../assets/g-logo.png';
 
 class LoginModal extends Component {
-  state = { showLoginModal: this.props.showLoginModal };
-
   render() {
     const customStyles = {
       overlay: {
@@ -27,8 +25,8 @@ class LoginModal extends Component {
     return (
       <div id="loginModal">
         <Modal
-          isOpen={this.state.showLoginModal}
-          onRequestClose={() => this.setState({ showLoginModal: false })}
+          isOpen={this.props.showLoginModal}
+          onRequestClose={() => this.props.onRequestClose()}
           style={customStyles}
           ariaHideApp={false}
         >

@@ -13,6 +13,7 @@ class Day extends Component {
             ? isToday ? 'rgba(56, 142, 60, .2)' : 'white'
             : 'rgba(0, 0, 0, .1)',
           height: '10vh',
+          width: `${100 / 7}%`,
           padding: '0',
           verticalAlign: 'top',
           border: 'thin solid rgba(0, 0, 0, .2)'

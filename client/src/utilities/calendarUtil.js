@@ -6,7 +6,7 @@ const lastDayOfThisMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0
 
 let days = [];
 
-for (let i = 0; i < firstDayOfThisMonth.getDay(); i++) {
+for (let i = firstDayOfThisMonth.getDay() - 1; i >= 0; i--) {
   days.push({
     date: lastDayOfLastMonth.getDate() - i,
     isThisMonth: false,

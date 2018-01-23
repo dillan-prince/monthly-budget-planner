@@ -6,6 +6,7 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import Landing from './Landing';
+import LoginModal from './LoginModal';
 import Dashboard from './Dashboard';
 
 class App extends Component {
@@ -21,18 +22,19 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header onLoginClicked={() => this.setState({ showLoginModal: true })} />
-
-            <Route path="/" component={this.renderLanding.bind(this)} exact />
+            <Route path="/" component={Landing} exact />
             <Route path="/dashboard" component={Dashboard} exact />
           </div>
         </BrowserRouter>
+        <LoginModal
+          onRequestClose={() => this.setState({ showLoginModal: false })}
+          showLoginModal={this.state.showLoginModal}
+        />;
       </div>
     );
   }
 
-  renderLanding() {
-    return <Landing showLoginModal={this.state.showLoginModal} />;
-  }
+  renderLoginModal() {}
 }
 
 export default connect(null, actions)(App);

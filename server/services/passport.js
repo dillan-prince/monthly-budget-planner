@@ -49,7 +49,8 @@ async function authenticationCallback(profile, done, authType) {
   const newUser = await new User({
     id: profile.id,
     authType,
-    name: profile.name.givenName
+    name: profile.name.givenName,
+    dateCreated: new Date()
   }).save();
 
   done(null, newUser);

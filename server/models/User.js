@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   id: String,
   authType: String,
-  name: String
+  name: String,
+  dateCreated: Date
 });
 
 mongoose.model('users', userSchema);
