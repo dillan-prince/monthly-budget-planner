@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 
-import fbLogo from '../assets/FB-f-Logo__white_29.png';
-import googleLogo from '../assets/g-logo.png';
+import './LoginModal.css';
+import fbLogo from '../../assets/FB-f-Logo__white_29.png';
+import googleLogo from '../../assets/g-logo.png';
 
 class LoginModal extends Component {
   render() {
@@ -33,50 +34,30 @@ class LoginModal extends Component {
           <div className="center-align">
             <h4>Log in with...</h4>
             <div>
-              <a
-                href="/api/authentication/facebook"
-                className="btn"
-                style={{
-                  width: '130px',
-                  height: '36px',
-                  padding: '0',
-                  marginBottom: '10px',
-                  backgroundColor: '#4267b2'
-                }}
-              >
+              <a href="/api/authentication/facebook" className="btn loginButton facebook">
                 <div>
                   <img
-                    className="left"
+                    className="left logo"
                     src={fbLogo}
                     alt="facebook_logo"
                     width="32"
                     height="32"
-                    style={{ margin: '2px 0 0 2px' }}
                   />
-                  <span className="right" style={{ marginRight: '8.79px' }}>
-                    Facebook
-                  </span>
+                  <span className="loginButtonText">Facebook</span>
                 </div>
               </a>
             </div>
             <div>
-              <a
-                href="/api/authentication/google"
-                className="btn white black-text"
-                style={{ width: '130px', height: '36px', padding: '0', marginBottom: '10px' }}
-              >
+              <a href="/api/authentication/google" className="btn white black-text loginButton">
                 <div>
                   <img
-                    className="left"
+                    className="left logo"
                     src={googleLogo}
                     alt="google_logo"
                     width="32"
                     height="32"
-                    style={{ margin: '2px 0 0 2px' }}
                   />
-                  <span className="right" style={{ marginRight: '17.67px' }}>
-                    Google
-                  </span>
+                  <span className="loginButtonText">Google</span>
                 </div>
               </a>
             </div>

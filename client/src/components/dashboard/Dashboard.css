@@ -1,0 +1,12 @@
+.calendarMenu {
+  height: 4em;
+  vertical-align: middle;
+}
+
+.month {
+  display: inline-block;
+}
+
+.eventButton {
+  margin-top: 4.625px;
+}

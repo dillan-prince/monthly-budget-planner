@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
-import Day from './Day';
-import getDayNames from '../../utilities/getDayNames';
-import days from '../../utilities/calendarUtil';
+import './Calendar.css';
+import Day from '../day/Day';
+import getDayNames from '../../../utilities/getDayNames';
+import days from '../../../utilities/calendarUtil';
 
 class Calendar extends Component {
   state = { showBillModal: false };
@@ -33,7 +34,7 @@ class Calendar extends Component {
   renderHeader() {
     return getDayNames().map((day) => {
       return (
-        <td key={day} className="center-align" style={{ border: 'thin solid rgba(0, 0, 0, .2)' }}>
+        <td key={day} className="center-align bordered">
           {day}
         </td>
       );
@@ -45,7 +46,7 @@ class Calendar extends Component {
 
     for (let weekNumber = 0; weekNumber < days.length / 7; weekNumber++) {
       calendar.push(
-        <tr key={`week-${weekNumber}`} style={{ position: 'relative' }}>
+        <tr key={`week-${weekNumber}`} className="relative">
           {this.renderWeek(weekNumber)}
         </tr>
       );

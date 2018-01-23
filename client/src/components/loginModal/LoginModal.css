@@ -1,0 +1,22 @@
+.loginButton {
+  width: 130px;
+  height: 36px;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.loginButtonText {
+  display: block;
+  width: 96;
+  text-align: center;
+}
+
+.logo {
+  margin: 2px 0 0 2px;
+}
+
+.facebook,
+.facebook:hover,
+.facebook:focus {
+  background-color: #4267b2;
+}

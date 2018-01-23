@@ -2,13 +2,13 @@ const passport = require('passport');
 
 module.exports.google_oauth = passport.authenticate('google', { scope: ['profile', 'email'] });
 module.exports.google_oauth_callback = passport.authenticate('google', {
-  successRedirect: '/dashboard',
+  successRedirect: '/',
   failureRedirect: '/'
 });
 
 module.exports.facebook_oauth = passport.authenticate('facebook');
 module.exports.facebook_oauth_callback = passport.authenticate('facebook', {
-  successRedirect: '/dashboard',
+  successRedirect: '/',
   failureRedirect: '/'
 });
 

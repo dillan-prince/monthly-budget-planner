@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions';
 
-import Header from './Header';
+import Header from './header/Header';
 import Landing from './Landing';
-import LoginModal from './LoginModal';
-import Dashboard from './Dashboard';
+import LoginModal from './loginModal/LoginModal';
+import Dashboard from './dashboard/Dashboard';
 
 class App extends Component {
   state = { showLoginModal: false };
@@ -22,8 +22,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header onLoginClicked={() => this.setState({ showLoginModal: true })} />
-            <Route path="/" component={this.directLandingComponent.bind(this)} exact />
-            <Route path="/dashboard" component={Dashboard} exact />
+            <Route path="/" component={this.props.user ? Dashboard : Landing} exact />
           </div>
         </BrowserRouter>
 
@@ -33,14 +32,6 @@ class App extends Component {
         />
       </div>
     );
-  }
-
-  directLandingComponent() {
-    if (this.props.user) {
-      return <Dashboard />;
-    } else {
-      return <Landing />;
-    }
   }
 }
 
