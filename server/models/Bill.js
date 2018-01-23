@@ -12,7 +12,7 @@ const billSchema = new Schema({
     ]
   },
   date: { type: Number, min: 1, max: 31 },
-  _user: { type: Schema.Types.ObjectId, ref: 'User' }
+  _account: { type: Schema.Types.ObjectId, ref: 'Account' }
 });
 
-mongoose.model('users', billSchema);
+mongoose.model('bills', billSchema);

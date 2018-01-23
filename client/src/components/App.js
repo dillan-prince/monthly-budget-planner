@@ -22,10 +22,11 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header onLoginClicked={() => this.setState({ showLoginModal: true })} />
-            <Route path="/" component={Landing} exact />
+            <Route path="/" component={this.directLandingComponent.bind(this)} exact />
             <Route path="/dashboard" component={Dashboard} exact />
           </div>
         </BrowserRouter>
+
         <LoginModal
           onRequestClose={() => this.setState({ showLoginModal: false })}
           showLoginModal={this.state.showLoginModal}
@@ -34,7 +35,17 @@ class App extends Component {
     );
   }
 
-  renderLoginModal() {}
+  directLandingComponent() {
+    if (this.props.user) {
+      return <Dashboard />;
+    } else {
+      return <Landing />;
+    }
+  }
 }
 
-export default connect(null, actions)(App);
+function mapStateToProps({ user }) {
+  return { user };
+}
+
+export default connect(mapStateToProps, actions)(App);
