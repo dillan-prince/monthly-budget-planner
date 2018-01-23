@@ -48,7 +48,7 @@ class Calendar extends Component {
   renderHeader() {
     return getDays().map((day) => {
       return (
-        <td key={day} className="center-align">
+        <td key={day} className="center-align" style={{ border: 'thin solid rgba(0, 0, 0, .2)' }}>
           {day}
         </td>
       );

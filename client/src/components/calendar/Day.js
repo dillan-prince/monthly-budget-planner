@@ -20,7 +20,9 @@ class Day extends Component {
         }}
       >
         <div style={{ fontSize: '.8em' }}>
-          <span className="right">{date}</span>
+          <span className="right" style={{ marginRight: '2px' }}>
+            {date}
+          </span>
         </div>
       </td>
     );
