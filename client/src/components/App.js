@@ -29,7 +29,7 @@ class App extends Component {
         <LoginModal
           onRequestClose={() => this.setState({ showLoginModal: false })}
           showLoginModal={this.state.showLoginModal}
-        />;
+        />
       </div>
     );
   }
