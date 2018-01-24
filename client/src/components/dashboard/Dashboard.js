@@ -7,7 +7,7 @@ import Calendar from './../calendarComponents/calendar/Calendar';
 import MONTHS from '../../utilities/months';
 
 class Dashboard extends Component {
-  state = { showSpinner: false };
+  state = { showBillModal: false };
 
   render() {
     const today = new Date();

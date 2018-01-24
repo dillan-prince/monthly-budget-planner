@@ -39,7 +39,7 @@ class LoginModal extends Component {
               <a
                 href="/api/authentication/facebook"
                 className="btn loginButton facebook"
-                onClick={() => this.props.showSpinner()}
+                onClick={() => this.props.showSpinner(true)}
               >
                 <div>
                   <img
@@ -57,7 +57,7 @@ class LoginModal extends Component {
               <a
                 href="/api/authentication/google"
                 className="btn white black-text loginButton"
-                onClick={() => this.props.showSpinner()}
+                onClick={() => this.props.showSpinner(true)}
               >
                 <div>
                   <img
