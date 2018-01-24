@@ -127,6 +127,7 @@ class EventEdit extends Component {
     setTimeout(() => {
       console.log('submitted');
       this.props.showSpinner(false);
+      this.props.cancel();
     }, 1500);
   }
 }
