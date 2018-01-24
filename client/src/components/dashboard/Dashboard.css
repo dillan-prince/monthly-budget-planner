@@ -9,4 +9,5 @@
 
 .eventButton {
   margin-top: 4.625px;
+  z-index: 0;
 }

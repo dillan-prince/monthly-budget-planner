@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Modal from 'react-modal';
 
 import './LoginModal.css';
+import * as actions from '../../actions';
 import fbLogo from '../../assets/FB-f-Logo__white_29.png';
 import googleLogo from '../../assets/g-logo.png';
 
@@ -34,7 +36,11 @@ class LoginModal extends Component {
           <div className="center-align">
             <h4>Log in with...</h4>
             <div>
-              <a href="/api/authentication/facebook" className="btn loginButton facebook">
+              <a
+                href="/api/authentication/facebook"
+                className="btn loginButton facebook"
+                onClick={() => this.props.showSpinner()}
+              >
                 <div>
                   <img
                     className="left logo"
@@ -48,7 +54,11 @@ class LoginModal extends Component {
               </a>
             </div>
             <div>
-              <a href="/api/authentication/google" className="btn white black-text loginButton">
+              <a
+                href="/api/authentication/google"
+                className="btn white black-text loginButton"
+                onClick={() => this.props.showSpinner()}
+              >
                 <div>
                   <img
                     className="left logo"
@@ -68,4 +78,4 @@ class LoginModal extends Component {
   }
 }
 
-export default LoginModal;
+export default connect(null, actions)(LoginModal);

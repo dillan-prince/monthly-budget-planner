@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './Dashboard.css';
+import * as actions from '../../actions';
 import Calendar from './../calendarComponents/calendar/Calendar';
 import MONTHS from '../../utilities/months';
 
 class Dashboard extends Component {
+  state = { showSpinner: false };
+
   render() {
     const today = new Date();
 
@@ -32,4 +35,4 @@ function mapStateToProps({ user }) {
   return { user };
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, actions)(Dashboard);

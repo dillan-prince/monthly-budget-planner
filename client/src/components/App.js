@@ -8,9 +8,10 @@ import Header from './header/Header';
 import Landing from './Landing';
 import LoginModal from './loginModal/LoginModal';
 import Dashboard from './dashboard/Dashboard';
+import Spinner from './spinner/Spinner';
 
 class App extends Component {
-  state = { showLoginModal: false };
+  state = { showLoginModal: false, loading: true };
 
   componentDidMount() {
     this.props.fetchUser();
@@ -19,6 +20,8 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+        <Spinner />
+
         <BrowserRouter>
           <div>
             <Header onLoginClicked={() => this.setState({ showLoginModal: true })} />
