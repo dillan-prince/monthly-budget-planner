@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 import './Calendar.css';
 import Day from '../day/Day';
 import getDayNames from '../../../utilities/getDayNames';
-import days from '../../../utilities/calendarUtil';
+import getDaysForMonth from '../../../utilities/getDaysForMonth';
 
 class Calendar extends Component {
   state = { showBillModal: false };
 
-  resize = () => this.forceUpdate();
+  componentWillMount() {
+    this.days = getDaysForMonth(new Date());
+    this.resize = () => this.forceUpdate();
+  }
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
@@ -44,7 +47,7 @@ class Calendar extends Component {
   renderCalendar() {
     let calendar = [];
 
-    for (let weekNumber = 0; weekNumber < days.length / 7; weekNumber++) {
+    for (let weekNumber = 0; weekNumber < this.days.length / 7; weekNumber++) {
       calendar.push(
         <tr key={`week-${weekNumber}`} className="relative">
           {this.renderWeek(weekNumber)}
@@ -61,7 +64,7 @@ class Calendar extends Component {
     for (let dayNumber = 0; dayNumber < 7; dayNumber++) {
       let index = weekNumber * 7 + dayNumber;
 
-      weekDays.push(<Day key={index} day={days[index]} />);
+      weekDays.push(<Day key={index} day={this.days[index]} />);
     }
 
     return weekDays;

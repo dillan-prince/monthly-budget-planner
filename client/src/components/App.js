@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './header/Header';
-import Landing from './Landing';
+import Landing from './landing/Landing';
 import LoginModal from './loginModal/LoginModal';
 import Dashboard from './dashboard/Dashboard';
 import Spinner from './spinner/Spinner';

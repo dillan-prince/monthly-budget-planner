@@ -10,7 +10,7 @@ class Spinner extends Component {
     return (
       <div className={`overlay ${this.props.loading ? '' : 'inactive'}`}>
         <div className="spinner">
-          <CircleLoader color={'#FFFFFF'} loading={this.props.loading} />
+          <CircleLoader color={'white'} loading={this.props.loading} />
         </div>
       </div>
     );
