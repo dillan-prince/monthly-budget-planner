@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './nameInput.css';
+import './InputField.css';
 
 class InputField extends Component {
   render() {
@@ -10,6 +10,7 @@ class InputField extends Component {
       id,
       type,
       className,
+      onKeyPress,
       disabled,
       maxLength,
       meta: { error, touched, active }
@@ -24,6 +25,7 @@ class InputField extends Component {
           className={`${className} validate ${
             touched && !active ? (error ? 'invalid' : 'valid') : ''
           }`}
+          onKeyPress={onKeyPress}
           disabled={disabled}
           maxLength={maxLength}
         />

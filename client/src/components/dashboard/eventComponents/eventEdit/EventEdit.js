@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 
 import './EventEdit.css';
-import InputField from '../eventFields/nameInput/nameInput';
+import InputField from '../inputField/InputField';
 import * as actions from '../../../../actions';
 
 class EventEdit extends Component {
@@ -30,6 +30,7 @@ class EventEdit extends Component {
           type="text"
           className="nameValue"
           maxLength="30"
+          onKeyPress={this.handleKeyPress}
           disabled={this.state.readyForReview}
           component={InputField}
         />
@@ -39,7 +40,7 @@ class EventEdit extends Component {
           id="valueInput"
           name="value"
           type="number"
-          min="0"
+          onKeyPress={this.handleKeyPress}
           disabled={this.state.readyForReview}
           component={InputField}
         />
@@ -49,8 +50,7 @@ class EventEdit extends Component {
           id="dateInput"
           name="date"
           type="number"
-          min="1"
-          max="31"
+          onKeyPress={this.handleKeyPress}
           disabled={this.state.readyForReview}
           component={InputField}
         />
@@ -144,6 +144,12 @@ class EventEdit extends Component {
     }
   }
 
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  }
+
   submit(values, errors) {
     console.log('submit:', values);
 
@@ -173,7 +179,7 @@ function validate(values) {
     errors.date = 'Date is required.';
   } else if (values.date < 1 || values.date > 31) {
     errors.date = 'Date must be between 1 and 31.';
-  } else if (values.date % 1 != 0) {
+  } else if (values.date % 1 !== 0) {
     errors.date = 'Date must be a whole number.';
   }
 
