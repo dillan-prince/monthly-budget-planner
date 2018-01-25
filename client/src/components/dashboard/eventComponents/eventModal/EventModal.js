@@ -3,11 +3,8 @@ import Modal from 'react-modal';
 
 import './EventModal.css';
 import EventEdit from '../eventEdit/EventEdit';
-import EventReview from '../eventReview/EventReview';
 
 class EventModal extends Component {
-  state = { readyForReview: false };
-
   render() {
     const customStyles = {
       overlay: {
@@ -27,17 +24,11 @@ class EventModal extends Component {
     return (
       <div>
         <Modal isOpen={this.props.showEventModal} ariaHideApp={false} style={customStyles}>
-          <div className="centered">{this.renderContent()}</div>
+          <div className="centered">
+            <EventEdit cancel={() => this.props.cancel()} />
+          </div>
         </Modal>
       </div>
-    );
-  }
-
-  renderContent() {
-    return this.state.readyForReview ? (
-      <EventReview back={() => this.setState({ readyForReview: false })} />
-    ) : (
-      <EventEdit cancel={() => this.props.cancel()} />
     );
   }
 }

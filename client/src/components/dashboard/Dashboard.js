@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './Dashboard.css';
 import * as actions from '../../actions';
-import Calendar from './../calendarComponents/calendar/Calendar';
+import Calendar from './calendarComponents/calendar/Calendar';
 import EventModal from './eventComponents/eventModal/EventModal';
 import MONTHS from '../../utilities/months';
 

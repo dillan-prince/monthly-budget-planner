@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
 
 import './EventEdit.css';
+import InputField from '../eventFields/nameInput/nameInput';
 import * as actions from '../../../../actions';
 
 class EventEdit extends Component {
@@ -9,73 +11,94 @@ class EventEdit extends Component {
 
   render() {
     return (
-      <div className="eventEdit">
+      <form
+        onSubmit={this.props.handleSubmit(
+          this.state.readyForReview
+            ? this.submit.bind(this)
+            : () => this.setState({ readyForReview: true })
+        )}
+        className="eventEdit"
+      >
         <h4 className="title" id="title">
           Event Details
         </h4>
 
-        <input
+        <Field
+          label="Name"
           id="nameInput"
+          name="name"
           type="text"
-          className="nameValue input"
-          placeholder="Name"
+          className="nameValue"
           maxLength="30"
           disabled={this.state.readyForReview}
+          component={InputField}
         />
 
-        <input
+        <Field
+          label="Value"
           id="valueInput"
+          name="value"
           type="number"
-          className="input"
-          placeholder="Value"
           min="0"
           disabled={this.state.readyForReview}
+          component={InputField}
         />
 
-        <input
+        <Field
+          label="Date"
           id="dateInput"
+          name="date"
           type="number"
-          className="input"
-          placeholder="Date"
           min="1"
           max="31"
           disabled={this.state.readyForReview}
+          component={InputField}
         />
 
-        <div className="recurringLabel">Recurring?</div>
+        <div className="attributeLabel">Recurring?</div>
         <div className="switch">
           <label>
             No
-            <input id="recurringCheckbox" type="checkbox" disabled={this.state.readyForReview} />
+            <Field
+              id="recurringCheckbox"
+              name="recurring"
+              type="checkbox"
+              disabled={this.state.readyForReview}
+              component="input"
+            />
             <span className="lever" />
             Yes
           </label>
         </div>
 
-        <div className="eventTypeLabel">Type</div>
+        <div className="attributeLabel">Type</div>
         <div>
           <div>
-            <input
-              type="radio"
-              id="eventType-income"
-              name="eventType"
-              disabled={this.state.readyForReview}
-            />
-            <label htmlFor="eventType-income">Income</label>
-          </div>
-          <div>
-            <input
-              type="radio"
+            <Field
               id="eventType-bill"
-              name="eventType"
+              name="type"
+              type="radio"
+              value="bill"
               disabled={this.state.readyForReview}
+              component="input"
             />
             <label htmlFor="eventType-bill">Bill</label>
+          </div>
+          <div>
+            <Field
+              id="eventType-income"
+              name="type"
+              type="radio"
+              value="income"
+              disabled={this.state.readyForReview}
+              component="input"
+            />
+            <label htmlFor="eventType-income">Income</label>
           </div>
         </div>
 
         {this.renderButtons()}
-      </div>
+      </form>
     );
   }
 
@@ -93,8 +116,8 @@ class EventEdit extends Component {
         <button
           key="confirmButton"
           id="confirmButton"
+          type="submit"
           className="btn right green darken-2"
-          onClick={() => this.submit()}
         >
           <i className="material-icons">check</i>
         </button>
@@ -112,8 +135,8 @@ class EventEdit extends Component {
         <button
           key="continueButton"
           id="continueButton"
+          type="submit"
           className="btn right green darken-2"
-          onClick={() => this.setState({ readyForReview: true })}
         >
           <i className="material-icons">navigate_next</i>
         </button>
@@ -121,15 +144,50 @@ class EventEdit extends Component {
     }
   }
 
-  submit() {
+  submit(values, errors) {
+    console.log('submit:', values);
+
     this.props.showSpinner(true);
 
     setTimeout(() => {
-      console.log('submitted');
       this.props.showSpinner(false);
       this.props.cancel();
     }, 1500);
   }
 }
 
-export default connect(null, actions)(EventEdit);
+function validate(values) {
+  const errors = {};
+
+  if (!values.name) {
+    errors.name = 'Name is required.';
+  }
+
+  if (!values.value) {
+    errors.value = 'Value is required.';
+  } else if (values.value <= 0) {
+    errors.value = 'Value must be positive.';
+  }
+
+  if (!values.date) {
+    errors.date = 'Date is required.';
+  } else if (values.date < 1 || values.date > 31) {
+    errors.date = 'Date must be between 1 and 31.';
+  } else if (values.date % 1 != 0) {
+    errors.date = 'Date must be a whole number.';
+  }
+
+  return errors;
+}
+
+export default connect(null, actions)(
+  reduxForm({
+    validate,
+    form: 'eventForm',
+    destroyOnUnmount: true,
+    initialValues: {
+      recurring: false,
+      type: 'bill'
+    }
+  })(EventEdit)
+);

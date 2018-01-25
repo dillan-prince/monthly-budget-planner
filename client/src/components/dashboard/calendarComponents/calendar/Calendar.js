@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import './Calendar.css';
 import Day from '../day/Day';
-import getDayNames from '../../../utilities/getDayNames';
-import getDaysForMonth from '../../../utilities/getDaysForMonth';
+import getDayNames from '../../../../utilities/getDayNames';
+import getDaysForMonth from '../../../../utilities/getDaysForMonth';
 
 class Calendar extends Component {
   state = { showBillModal: false };
