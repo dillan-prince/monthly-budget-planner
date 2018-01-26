@@ -150,15 +150,8 @@ class EventEdit extends Component {
     }
   }
 
-  submit(values, errors) {
-    console.log('submit:', values);
-
-    this.props.showSpinner(true);
-
-    setTimeout(() => {
-      this.props.showSpinner(false);
-      this.props.cancel();
-    }, 1500);
+  submit(values) {
+    this.props.insertEvent(values);
   }
 }
 
@@ -173,6 +166,8 @@ function validate(values) {
     errors.value = 'Value is required.';
   } else if (values.value <= 0) {
     errors.value = 'Value must be positive.';
+  } else if ((values.value * 100) % 1 !== 0) {
+    errors.value = 'Value must contain 2 decimals.';
   }
 
   if (!values.date) {
@@ -192,7 +187,10 @@ export default connect(null, actions)(
     form: 'eventForm',
     destroyOnUnmount: true,
     initialValues: {
-      recurring: false,
+      name: 'Car Payment',
+      value: 502.51,
+      date: 18,
+      recurring: true,
       type: 'bill'
     }
   })(EventEdit)

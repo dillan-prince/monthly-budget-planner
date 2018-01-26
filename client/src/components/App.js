@@ -20,8 +20,6 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Spinner />
-
         <BrowserRouter>
           <div>
             <Header onLoginClicked={() => this.setState({ showLoginModal: true })} />
@@ -29,6 +27,7 @@ class App extends Component {
           </div>
         </BrowserRouter>
 
+        <Spinner />
         <LoginModal
           onRequestClose={() => this.setState({ showLoginModal: false })}
           showLoginModal={this.state.showLoginModal}

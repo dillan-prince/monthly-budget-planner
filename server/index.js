@@ -1,14 +1,17 @@
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const express = require('express');
-const mongoose = require('mongoose');
 const passport = require('passport');
+
+const mongoose = require('mongoose');
+require('./models/User');
+require('./models/Account');
+require('./models/Event');
 
 const routes = require('./routes/index');
 const keys = require('./config/keys');
 
 // database objects
-require('./models/User');
 mongoose.connect(keys.MONGO_CONNECTION_STRING);
 
 // services
