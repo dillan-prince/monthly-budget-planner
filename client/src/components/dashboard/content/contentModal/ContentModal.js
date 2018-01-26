@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 
-import './EventModal.css';
-import EventEdit from '../eventEdit/EventEdit';
+import './ContentModal.css';
 
-class EventModal extends Component {
+class ContentModal extends Component {
   render() {
     const customStyles = {
       overlay: {
@@ -23,14 +22,12 @@ class EventModal extends Component {
 
     return (
       <div>
-        <Modal isOpen={this.props.showEventModal} ariaHideApp={false} style={customStyles}>
-          <div className="centered">
-            <EventEdit cancel={() => this.props.cancel()} />
-          </div>
+        <Modal isOpen={this.props.isOpen} ariaHideApp={false} style={customStyles}>
+          <div className="centered">{this.props.content}</div>
         </Modal>
       </div>
     );
   }
 }
 
-export default EventModal;
+export default ContentModal;

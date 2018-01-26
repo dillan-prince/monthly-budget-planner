@@ -1,13 +1,28 @@
 .calendarMenu {
-  height: 4em;
-  vertical-align: middle;
+  display: grid;
+  grid-template: 2fr / 2fr;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
 }
 
-.month {
-  display: inline-block;
+.date {
+  grid-area: 1 / 1 span 2;
+}
+
+.accountDropdown {
+  grid-area: 2 / 1;
+}
+
+.headerButtons {
+  grid-area: 2 / 2;
+}
+
+.button {
+  margin-bottom: 10px;
+  z-index: 0;
+  padding: 0 10px;
 }
 
 .eventButton {
-  margin-top: 4.625px;
-  z-index: 0;
+  margin-left: 10px;
 }

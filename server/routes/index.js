@@ -1,6 +1,7 @@
 const express = require('express');
 
 // Import all routers
+const accountRoutes = require('./accounts/accountRoutes');
 const authenticationRoutes = require('./authentication/authenticationRoutes');
 const eventRoutes = require('./events/eventRoutes');
 
@@ -8,6 +9,7 @@ const eventRoutes = require('./events/eventRoutes');
 const router = express.Router();
 
 // Add all routes to router
+accountRoutes(router);
 authenticationRoutes(router);
 eventRoutes(router);
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 
 import './EventEdit.css';
-import InputField from '../inputField/InputField';
+import InputField from '../../content/inputField/InputField';
 import * as actions from '../../../../actions';
 
 class EventEdit extends Component {
@@ -20,12 +20,12 @@ class EventEdit extends Component {
         className="eventEdit"
       >
         <h4 className="title" id="title">
-          Event Details
+          {`${this.state.readyForReview ? 'Review Event' : 'Edit Event'}`}
         </h4>
 
         <Field
-          label="Name"
-          id="nameInput"
+          label="Event Name"
+          id="eventNameInput"
           name="name"
           type="text"
           className="nameValue"
@@ -188,7 +188,7 @@ export default connect(null, actions)(
     destroyOnUnmount: true,
     initialValues: {
       name: 'Car Payment',
-      value: 502.51,
+      value: 502.53,
       date: 18,
       recurring: true,
       type: 'bill'
