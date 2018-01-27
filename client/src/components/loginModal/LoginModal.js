@@ -35,44 +35,43 @@ class LoginModal extends Component {
         >
           <div className="center-align">
             <h4>Log in with...</h4>
-            <div>
-              <a
-                href="/api/authentication/facebook"
-                className="btn loginButton facebook"
-                onClick={() => this.props.showSpinner(true)}
-              >
-                <div>
-                  <img
-                    className="left logo"
-                    src={fbLogo}
-                    alt="facebook_logo"
-                    width="32"
-                    height="32"
-                  />
-                  <span className="loginButtonText">Facebook</span>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a
-                href="/api/authentication/google"
-                className="btn white black-text loginButton"
-                onClick={() => this.props.showSpinner(true)}
-              >
-                <div>
-                  <img
-                    className="left logo"
-                    src={googleLogo}
-                    alt="google_logo"
-                    width="32"
-                    height="32"
-                  />
-                  <span className="loginButtonText">Google</span>
-                </div>
-              </a>
-            </div>
+            {this.renderGoogleButton()}
           </div>
         </Modal>
+      </div>
+    );
+  }
+
+  renderFacebookButton() {
+    return (
+      <div>
+        <a
+          href="/api/authentication/facebook"
+          className="btn loginButton facebook"
+          onClick={() => this.props.showSpinner(true)}
+        >
+          <div>
+            <img className="left logo" src={fbLogo} alt="facebook_logo" width="32" height="32" />
+            <span className="loginButtonText">Facebook</span>
+          </div>
+        </a>
+      </div>
+    );
+  }
+
+  renderGoogleButton() {
+    return (
+      <div>
+        <a
+          href="/api/authentication/google"
+          className="btn white black-text loginButton"
+          onClick={() => this.props.showSpinner(true)}
+        >
+          <div>
+            <img className="left logo" src={googleLogo} alt="google_logo" width="32" height="32" />
+            <span className="loginButtonText">Google</span>
+          </div>
+        </a>
       </div>
     );
   }

@@ -6,7 +6,7 @@ const EventSchema = require('./Event');
 const accountSchema = new Schema({
   name: {
     type: String,
-    maxlength: [30, 'Name must be 30 characters or fewer.']
+    maxlength: [25, 'Name must be 25 characters or fewer.']
   },
   initialValue: Number,
   dateCreated: Date,

@@ -29,7 +29,7 @@ class AccountEdit extends Component {
           name="name"
           type="text"
           className="nameInput"
-          maxLength="30"
+          maxLength="25"
           onKeyPress={this.handleKeyPress}
           disabled={this.state.readyForReview}
           component={InputField}

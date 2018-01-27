@@ -7,7 +7,7 @@ class AccountDropdown extends Component {
   state = { selectedAccount: null };
 
   componentWillReceiveProps(newProps) {
-    if (newProps.accounts) {
+    if (newProps.accounts && newProps.accounts.length) {
       if (this.props.accounts) {
         if (newProps.accounts.length > this.props.accounts.length) {
           const newAccount = newProps.accounts.find((n) => {
@@ -30,6 +30,7 @@ class AccountDropdown extends Component {
           value={this.state.selectedAccount}
           onChange={this.handleChange.bind(this)}
           disabled={this.props.accounts.length === 1}
+          style={{ maxWidth: '220px' }}
         >
           {this.renderAccountDropdownOptions()}
         </SelectField>
