@@ -1,12 +1,12 @@
 .eventEdit {
   display: grid;
-  grid-template: 5fr / 2fr;
+  grid-template: 6fr / 2fr;
   grid-row-gap: 1.5em;
   grid-column-gap: 1em;
 }
 
 .title {
-  grid-area: 1 / 1 / 2 / 3;
+  grid-area: 1 span 1 / 1 span 2;
 }
 
 .nameValue {
@@ -15,6 +15,30 @@
 
 #valueInput {
   width: 150px;
+}
+
+.valueInput {
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.dateInput {
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.recurringLabel {
+  grid-area: 4 / 1;
+}
+
+.recurringSwitch {
+  grid-area: 4 / 2;
+}
+
+.typeLabel {
+  grid-area: 5 / 1;
+}
+
+.typeRadioButtons {
+  grid-area: 5 / 2;
 }
 
 .attributeLabel {
@@ -33,9 +57,11 @@
 #backButton,
 #closeButton {
   margin-right: auto;
+  grid-area: 6 / 1;
 }
 
 #continueButton,
 #confirmButton {
   margin-left: auto;
+  grid-area: 6 / 2;
 }

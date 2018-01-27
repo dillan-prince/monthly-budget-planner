@@ -2,7 +2,6 @@
   display: grid;
   grid-template: 2fr / 2fr;
   grid-column-gap: 1em;
-  grid-row-gap: 1em;
 }
 
 .date {
@@ -11,6 +10,8 @@
 
 .accountDropdown {
   grid-area: 2 / 1;
+  height: 37.696px;
+  max-width: 230px;
 }
 
 .headerButtons {
@@ -20,9 +21,9 @@
 .button {
   margin-bottom: 10px;
   z-index: 0;
-  padding: 0 10px;
+  padding: 0 6px;
 }
 
 .eventButton {
-  margin-left: 10px;
+  margin-left: 5px;
 }

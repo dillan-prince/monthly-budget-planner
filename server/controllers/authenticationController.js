@@ -12,10 +12,6 @@ module.exports.facebook_oauth_callback = passport.authenticate('facebook', {
   failureRedirect: '/'
 });
 
-module.exports.oauth_redirect = (req, res) => {
-  res.redirect('/dashboard');
-};
-
 module.exports.get_user = (req, res) => {
   res.send(req.user);
 };

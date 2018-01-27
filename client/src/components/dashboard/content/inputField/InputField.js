@@ -22,9 +22,7 @@ class InputField extends Component {
           {...input}
           id={id}
           type={type}
-          className={`${className} validate ${
-            touched && !active ? (error ? 'invalid' : 'valid') : ''
-          }`}
+          className={`validate ${touched && !active ? (error ? 'invalid' : 'valid') : ''}`}
           onKeyPress={onKeyPress}
           disabled={disabled}
           maxLength={maxLength}

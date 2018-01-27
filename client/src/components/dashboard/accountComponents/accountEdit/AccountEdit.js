@@ -29,7 +29,7 @@ class AccountEdit extends Component {
           name="name"
           type="text"
           className="nameInput"
-          maxLength="20"
+          maxLength="30"
           onKeyPress={this.handleKeyPress}
           disabled={this.state.readyForReview}
           component={InputField}
@@ -45,6 +45,17 @@ class AccountEdit extends Component {
           disabled={this.state.readyForReview}
           component={InputField}
         />
+
+        <div className="defaultCheckbox">
+          <Field
+            id="defaultCheckbox"
+            name="isDefault"
+            type="checkbox"
+            disabled={this.state.readyForReview}
+            component="input"
+          />
+          <label htmlFor="defaultCheckbox">Make this my default account</label>
+        </div>
 
         <div className="buttons">{this.renderButtons()}</div>
       </form>
@@ -99,9 +110,8 @@ class AccountEdit extends Component {
     }
   }
 
-  submit(values) {
-    console.log(values);
-
+  async submit(values) {
+    await this.props.insertAccount(values);
     this.props.cancel();
   }
 }
@@ -128,8 +138,7 @@ export default connect(null, actions)(
     form: 'accountForm',
     destroyOnUnmount: true,
     initialValues: {
-      name: 'Chase Checking Acc',
-      initialValue: 3000
+      isDefault: false
     }
   })(AccountEdit)
 );

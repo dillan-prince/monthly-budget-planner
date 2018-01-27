@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 
 import './Dashboard.css';
 import * as actions from '../../actions';
+
 import Calendar from './calendarComponents/calendar/Calendar';
 import MONTHS from '../../utilities/months';
 
+import AccountDropdown from './accountDropdown/AccountDropdown';
 import ContentModal from './content/contentModal/ContentModal';
 import EventEdit from './eventComponents/eventEdit/EventEdit';
 import AccountEdit from './accountComponents/accountEdit/AccountEdit';
@@ -29,7 +31,9 @@ class Dashboard extends Component {
         <div className="calendarMenu">
           <h5 className="date">{`${MONTHS[today.getMonth()]}, ${today.getFullYear()}`}</h5>
 
-          {this.renderAccountDropdown()}
+          <div className="accountDropdown">
+            <AccountDropdown accounts={this.props.accounts} />
+          </div>
 
           <div className="headerButtons">
             {this.renderNewAccountButton()}
@@ -50,28 +54,6 @@ class Dashboard extends Component {
         <Calendar />
       </div>
     );
-  }
-
-  renderAccountDropdown() {
-    if (this.props.accounts && this.props.accounts.length) {
-      return (
-        <div className="accountDropdown">
-          <a className="dropdown-button btn green darken-2 button" data-activates="accountDropdown">
-            Accounts
-          </a>
-
-          <ul id="accountDropdown" className="dropdown-content">
-            {this.renderAccountDropdownOptions()}
-          </ul>
-        </div>
-      );
-    }
-  }
-
-  renderAccountDropdownOptions() {
-    return this.props.accounts.map((account) => {
-      return <li key={account._id}>{account.name}</li>;
-    });
   }
 
   renderNewAccountButton() {

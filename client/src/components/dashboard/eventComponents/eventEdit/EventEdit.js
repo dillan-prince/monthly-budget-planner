@@ -40,6 +40,7 @@ class EventEdit extends Component {
           id="valueInput"
           name="value"
           type="number"
+          className="valueInput"
           onKeyPress={this.handleKeyPress}
           disabled={this.state.readyForReview}
           component={InputField}
@@ -50,13 +51,14 @@ class EventEdit extends Component {
           id="dateInput"
           name="date"
           type="number"
+          className="dateInput"
           onKeyPress={this.handleKeyPress}
           disabled={this.state.readyForReview}
           component={InputField}
         />
 
-        <div className="attributeLabel">Recurring?</div>
-        <div className="switch">
+        <div className="attributeLabel recurringLabel">Recurring?</div>
+        <div className="switch recurringSwitch">
           <label>
             No
             <Field
@@ -71,8 +73,8 @@ class EventEdit extends Component {
           </label>
         </div>
 
-        <div className="attributeLabel">Type</div>
-        <div>
+        <div className="attributeLabel typeLabel">Type</div>
+        <div className="typeRadioButtons">
           <div>
             <Field
               id="eventType-bill"
