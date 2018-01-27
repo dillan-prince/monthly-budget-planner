@@ -189,9 +189,6 @@ export default connect(null, actions)(
     form: 'eventForm',
     destroyOnUnmount: true,
     initialValues: {
-      name: 'Car Payment',
-      value: 502.53,
-      date: 18,
       recurring: true,
       type: 'bill'
     }
