@@ -5,7 +5,7 @@ import './Dashboard.css';
 import * as actions from '../../actions';
 
 import Calendar from './calendarComponents/calendar/Calendar';
-import MONTHS from '../../utilities/months';
+import MONTHS from '../../constants/months';
 
 import AccountDropdown from './accountDropdown/AccountDropdown';
 import ContentModal from './content/contentModal/ContentModal';

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
+import * as actions from '../../../actions';
+
 class AccountDropdown extends Component {
   state = { selectedAccount: null };
 
@@ -14,11 +16,11 @@ class AccountDropdown extends Component {
             return this.props.accounts.every((o) => o._id !== n._id);
           });
 
-          this.setState({ selectedAccount: newAccount._id });
+          this.setState({ selectedAccount: newAccount._id }, this.emitChangeEvent);
         }
       } else {
         const defaultAccount = newProps.accounts.find((account) => account.isDefault);
-        this.setState({ selectedAccount: defaultAccount._id });
+        this.setState({ selectedAccount: defaultAccount._id }, this.emitChangeEvent);
       }
     }
   }
@@ -47,9 +49,11 @@ class AccountDropdown extends Component {
   }
 
   handleChange(event, index, value) {
-    this.setState({ selectedAccount: value });
+    this.setState({ selectedAccount: value }, this.emitChangeEvent);
+  }
 
-    // TODO: emit event indicating a new account was selected.
+  emitChangeEvent() {
+    this.props.accountSelected(this.state.selectedAccount);
   }
 }
 
@@ -57,4 +61,4 @@ function mapStateToProps({ accounts }) {
   return { accounts };
 }
 
-export default connect(mapStateToProps)(AccountDropdown);
+export default connect(mapStateToProps, actions)(AccountDropdown);

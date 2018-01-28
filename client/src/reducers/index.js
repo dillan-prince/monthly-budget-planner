@@ -5,11 +5,13 @@ import authenticationReducer from './authenticationReducer';
 import spinnerReducer from './spinnerReducer';
 import eventReducer from './eventReducer';
 import accountReducer from './accountReducer';
+import accountSelectedReducer from './accountSelectedReducer';
 
 export default combineReducers({
-  form: reduxForm,
-  user: authenticationReducer,
-  loading: spinnerReducer,
+  accounts: accountReducer,
   event: eventReducer,
-  accounts: accountReducer
+  form: reduxForm,
+  loading: spinnerReducer,
+  selectedAccount: accountSelectedReducer,
+  user: authenticationReducer
 });

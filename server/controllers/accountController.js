@@ -15,6 +15,15 @@ module.exports.get_accounts = async (req, res) => {
   }
 };
 
+module.exports.get_account = async (req, res) => {
+  try {
+    const account = await Account.findById(req.params.accountId);
+    res.status(200).send(account);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports.insert_account = async (req, res) => {
   try {
     const { name, initialValue } = req.body;

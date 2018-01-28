@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import './Calendar.css';
 import Day from '../day/Day';
 import getDayNames from '../../../../utilities/getDayNames';
 import getDaysForMonth from '../../../../utilities/getDaysForMonth';
+import getAccountHistory from '../../../../utilities/getAccountHistory';
 
 class Calendar extends Component {
-  state = { showBillModal: false };
+  state = { selectedAccount: null, selectedMonth: new Date(), accountHistory: [] };
 
   componentWillMount() {
-    this.days = getDaysForMonth(new Date());
+    this.days = getDaysForMonth(this.state.selectedMonth);
     this.resize = () => this.forceUpdate();
   }
 
@@ -19,6 +21,12 @@ class Calendar extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.resize);
+  }
+
+  componentWillReceiveProps({ selectedAccount }) {
+    if (selectedAccount) {
+      this.setState({ selectedAccount }, this.updateAccountHistory);
+    }
   }
 
   render() {
@@ -60,6 +68,7 @@ class Calendar extends Component {
 
   renderWeek(weekNumber) {
     let weekDays = [];
+    console.log(this.state);
 
     for (let dayNumber = 0; dayNumber < 7; dayNumber++) {
       let index = weekNumber * 7 + dayNumber;
@@ -69,6 +78,19 @@ class Calendar extends Component {
 
     return weekDays;
   }
+
+  updateAccountHistory() {
+    const history = getAccountHistory(
+      this.state.selectedAccount,
+      new Date(this.state.selectedMonth.getFullYear(), this.state.selectedMonth.getMonth() + 1, 0)
+    );
+
+    this.setState({ accountHistory: history });
+  }
 }
 
-export default Calendar;
+function mapStateToProps({ selectedAccount }) {
+  return { selectedAccount };
+}
+
+export default connect(mapStateToProps)(Calendar);
