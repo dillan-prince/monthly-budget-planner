@@ -28,7 +28,7 @@ export default (account, endDate) => {
     }
 
     accountValue += value;
-    history.push({ date: currentDate, value: accountValue });
+    history.push({ date: currentDate, value: accountValue, events: currentDateEvents });
   }
 
   return history;

@@ -23,9 +23,14 @@ class Calendar extends Component {
     window.removeEventListener('resize', this.resize);
   }
 
-  componentWillReceiveProps({ selectedAccount }) {
+  componentWillReceiveProps({ selectedAccount, selectedMonth }) {
     if (selectedAccount) {
+      console.log(selectedAccount);
       this.setState({ selectedAccount }, this.updateAccountHistory);
+    }
+
+    if (selectedMonth) {
+      this.setState({ selectedMonth });
     }
   }
 
@@ -68,7 +73,6 @@ class Calendar extends Component {
 
   renderWeek(weekNumber) {
     let weekDays = [];
-    console.log(this.state);
 
     for (let dayNumber = 0; dayNumber < 7; dayNumber++) {
       let index = weekNumber * 7 + dayNumber;

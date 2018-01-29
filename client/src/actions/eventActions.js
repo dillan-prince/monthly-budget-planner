@@ -1,16 +1,16 @@
 import axios from 'axios';
 
 import * as commonActions from './commonActions';
-import { INSERT_EVENT } from './types';
+import { ACCOUNT_SELECTED } from './types';
 
-export const insertEvent = (event) => async (dispatch) => {
+export const insertEvent = (event, accountId) => async (dispatch) => {
   dispatch(commonActions.showSpinner(true));
 
   try {
-    const res = await axios.post('/api/event', event);
+    const res = await axios.post('/api/event', { ...event, accountId });
 
     dispatch({
-      type: INSERT_EVENT,
+      type: ACCOUNT_SELECTED,
       payload: res.data
     });
 

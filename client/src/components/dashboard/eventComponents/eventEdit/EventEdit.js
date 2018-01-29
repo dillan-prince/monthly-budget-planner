@@ -152,8 +152,9 @@ class EventEdit extends Component {
     }
   }
 
-  submit(values) {
-    this.props.insertEvent(values);
+  async submit(values) {
+    await this.props.insertEvent(values, this.props.selectedAccount._id);
+    this.props.cancel();
   }
 }
 
@@ -183,7 +184,11 @@ function validate(values) {
   return errors;
 }
 
-export default connect(null, actions)(
+function mapStateToProps({ selectedAccount }) {
+  return { selectedAccount };
+}
+
+export default connect(mapStateToProps, actions)(
   reduxForm({
     validate,
     form: 'eventForm',
