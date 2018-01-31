@@ -4,14 +4,12 @@ import { connect } from 'react-redux';
 import './Calendar.css';
 import Day from '../day/Day';
 import getDayNames from '../../../../utilities/getDayNames';
-import getDaysForMonth from '../../../../utilities/getDaysForMonth';
 import getAccountHistory from '../../../../utilities/getAccountHistory';
 
 class Calendar extends Component {
   state = { selectedAccount: null, selectedMonth: new Date(), accountHistory: [] };
 
   componentWillMount() {
-    this.days = getDaysForMonth(this.state.selectedMonth);
     this.resize = () => this.forceUpdate();
   }
 
@@ -35,16 +33,20 @@ class Calendar extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <table className="striped">
-          <tbody>
-            <tr>{this.renderHeader()}</tr>
-            {this.renderCalendar()}
-          </tbody>
-        </table>
-      </div>
-    );
+    if (this.state.accountHistory) {
+      return (
+        <div>
+          <table className="striped">
+            <tbody>
+              <tr>{this.renderHeader()}</tr>
+              {this.renderCalendar()}
+            </tbody>
+          </table>
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 
   renderHeader() {
@@ -60,7 +62,7 @@ class Calendar extends Component {
   renderCalendar() {
     let calendar = [];
 
-    for (let weekNumber = 0; weekNumber < this.days.length / 7; weekNumber++) {
+    for (let weekNumber = 0; weekNumber < this.state.accountHistory.length / 7; weekNumber++) {
       calendar.push(
         <tr key={`week-${weekNumber}`} className="relative">
           {this.renderWeek(weekNumber)}
@@ -76,8 +78,7 @@ class Calendar extends Component {
 
     for (let dayNumber = 0; dayNumber < 7; dayNumber++) {
       let index = weekNumber * 7 + dayNumber;
-
-      weekDays.push(<Day key={index} day={this.days[index]} />);
+      weekDays.push(<Day key={index} day={this.state.accountHistory[index]} />);
     }
 
     return weekDays;

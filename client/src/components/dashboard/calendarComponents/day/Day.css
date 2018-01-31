@@ -7,6 +7,19 @@
   border: thin solid rgba(0, 0, 0, 0.2);
 }
 
+.grid {
+  display: grid;
+  grid-template: 2fr / 2fr;
+}
+
+.date {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.value {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
 .otherMonth {
   background-color: rgba(0, 0, 0, 0.1);
 }

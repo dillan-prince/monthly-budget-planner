@@ -29,7 +29,7 @@ class Dashboard extends Component {
         <hr />
 
         <div className="calendarMenu">
-          <h5 className="date">{`${MONTHS[today.getMonth()]}, ${today.getFullYear()}`}</h5>
+          <h5 className="dashboardDate">{`${MONTHS[today.getMonth()]}, ${today.getFullYear()}`}</h5>
 
           <div className="accountDropdown">
             <AccountDropdown accounts={this.props.accounts} />

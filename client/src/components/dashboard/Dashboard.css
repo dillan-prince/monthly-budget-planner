@@ -4,7 +4,7 @@
   grid-column-gap: 1em;
 }
 
-.date {
+.dashboardDate {
   grid-area: 1 / 1 span 2;
 }
 

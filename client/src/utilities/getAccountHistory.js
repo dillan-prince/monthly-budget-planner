@@ -2,6 +2,7 @@ export default (account, endDate) => {
   const { dateCreated, events } = account;
 
   const accountCreatedOn = new Date(Date.parse(dateCreated));
+  const datesToShow = getDatesToShow(endDate);
 
   // Discard time on date account was created
   const startDate = new Date(
@@ -10,10 +11,12 @@ export default (account, endDate) => {
     accountCreatedOn.getDate()
   );
 
-  const datesBetween = getDatesBetween(startDate, endDate);
+  const actualEndDate = datesToShow[datesToShow.length - 1].date;
+
+  const datesBetween = getDatesBetween(startDate, actualEndDate);
   const eventDictionary = getEventDictionary(events);
 
-  const history = [];
+  const history = {};
   let accountValue = account.initialValue;
 
   for (let i = 0; i < datesBetween.length; i++) {
@@ -28,11 +31,66 @@ export default (account, endDate) => {
     }
 
     accountValue += value;
-    history.push({ date: currentDate, value: accountValue, events: currentDateEvents });
+    history[currentDate] = { date: currentDate, value: accountValue, events: currentDateEvents };
   }
 
-  return history;
+  return datesToShow.map((dateToShow) => {
+    return {
+      date: dateToShow.date,
+      isThisMonth: dateToShow.isThisMonth,
+      isToday: dateToShow.isToday,
+      value: history[dateToShow.date] ? history[dateToShow.date].value : null,
+      events: history[dateToShow.date] ? history[dateToShow.date].events : null
+    };
+  });
 };
+
+function getDatesToShow(lastDayOfThisMonth) {
+  const today = new Date();
+  const lastDayOfLastMonth = new Date(
+    lastDayOfThisMonth.getFullYear(),
+    lastDayOfThisMonth.getMonth(),
+    0
+  );
+  const firstDayOfThisMonth = new Date(
+    lastDayOfThisMonth.getFullYear(),
+    lastDayOfThisMonth.getMonth(),
+    1
+  );
+
+  let days = [];
+
+  for (let i = firstDayOfThisMonth.getDay() - 1; i >= 0; i--) {
+    days.push({
+      //date: lastDayOfLastMonth.getDate() - i,
+      date: new Date(
+        lastDayOfLastMonth.getFullYear(),
+        lastDayOfLastMonth.getMonth(),
+        lastDayOfLastMonth.getDate() - i
+      ),
+      isThisMonth: false,
+      isToday: false
+    });
+  }
+
+  for (let i = 1; i <= lastDayOfThisMonth.getDate(); i++) {
+    days.push({
+      date: new Date(firstDayOfThisMonth.getFullYear(), firstDayOfThisMonth.getMonth(), i),
+      isThisMonth: true,
+      isToday: i === today.getDate()
+    });
+  }
+
+  for (let i = 1; i < 7 - lastDayOfThisMonth.getDay(); i++) {
+    days.push({
+      date: new Date(lastDayOfThisMonth.getFullYear(), lastDayOfThisMonth.getMonth() + 1, i),
+      isThisMonth: false,
+      isToday: false
+    });
+  }
+
+  return days;
+}
 
 function getDatesBetween(startDate, endDate) {
   const dates = [];
