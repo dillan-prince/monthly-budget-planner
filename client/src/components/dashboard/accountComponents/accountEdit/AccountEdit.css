@@ -5,7 +5,7 @@
 }
 
 .title {
-  grid-area: 1 / 1;
+  grid-area: 1 / 1 / 2 / 3;
 }
 
 .nameInput {

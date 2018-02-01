@@ -19,9 +19,9 @@ class EventEdit extends Component {
         )}
         className="eventEdit"
       >
-        <h4 className="title" id="title">
-          {`${this.state.readyForReview ? 'Review Event' : 'Edit Event'}`}
-        </h4>
+        <div className="title">
+          <h4 id="title">{`${this.state.readyForReview ? 'Review Event' : 'Edit Event'}`}</h4>
+        </div>
 
         <Field
           label="Event Name"
