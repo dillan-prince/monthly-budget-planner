@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, formValueSelector } from 'redux-form';
 
 import './EventEdit.css';
 import InputField from '../../content/inputField/InputField';
+import RecurringDropdown from '../recurringDropdown/RecurringDropdown';
 import * as actions from '../../../../actions';
 
 class EventEdit extends Component {
   state = { readyForReview: false };
 
   render() {
+    console.log(this.props.recurring);
+
     return (
       <form
         onSubmit={this.props.handleSubmit(
@@ -57,22 +60,6 @@ class EventEdit extends Component {
           component={InputField}
         />
 
-        <div className="attributeLabel recurringLabel">Recurring?</div>
-        <div className="switch recurringSwitch">
-          <label>
-            No
-            <Field
-              id="recurringCheckbox"
-              name="recurring"
-              type="checkbox"
-              disabled={this.state.readyForReview}
-              component="input"
-            />
-            <span className="lever" />
-            Yes
-          </label>
-        </div>
-
         <div className="attributeLabel typeLabel">Type</div>
         <div className="typeRadioButtons">
           <div>
@@ -97,6 +84,35 @@ class EventEdit extends Component {
             />
             <label htmlFor="eventType-income">Income</label>
           </div>
+        </div>
+
+        <div className="attributeLabel recurringLabel">Recurring?</div>
+        <div className="switch recurringSwitch">
+          <label>
+            No
+            <Field
+              id="recurringCheckbox"
+              name="recurring"
+              type="checkbox"
+              disabled={this.state.readyForReview}
+              component="input"
+            />
+            <span className="lever" />
+            Yes
+          </label>
+        </div>
+
+        <div
+          className="attributeLabel howOftenLabel"
+          style={{ display: this.props.recurring ? 'block' : 'none' }}
+        >
+          How often?
+        </div>
+        <div
+          className="recurringDropdown"
+          style={{ display: this.props.recurring ? 'block' : 'none' }}
+        >
+          <RecurringDropdown />
         </div>
 
         {this.renderButtons()}
@@ -184,8 +200,11 @@ function validate(values) {
   return errors;
 }
 
-function mapStateToProps({ selectedAccount }) {
-  return { selectedAccount };
+const selector = formValueSelector('eventForm');
+function mapStateToProps(state) {
+  const { selectedAccount } = state;
+
+  return { selectedAccount, recurring: selector(state, 'recurring') };
 }
 
 export default connect(mapStateToProps, actions)(
@@ -194,7 +213,7 @@ export default connect(mapStateToProps, actions)(
     form: 'eventForm',
     destroyOnUnmount: true,
     initialValues: {
-      recurring: true,
+      recurring: false,
       type: 'bill'
     }
   })(EventEdit)

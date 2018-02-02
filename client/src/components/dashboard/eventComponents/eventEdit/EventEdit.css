@@ -25,20 +25,29 @@
   grid-area: 3 / 2 / 4 / 3;
 }
 
-.recurringLabel {
+.typeLabel {
   grid-area: 4 / 1;
 }
 
-.recurringSwitch {
+.typeRadioButtons {
   grid-area: 4 / 2;
 }
 
-.typeLabel {
+.recurringLabel {
   grid-area: 5 / 1;
 }
 
-.typeRadioButtons {
+.recurringSwitch {
   grid-area: 5 / 2;
+}
+
+.howOftenLabel {
+  grid-area: 6 / 1;
+  margin-top: 15px;
+}
+
+.recurringDropdown {
+  grid-area: 6 / 2;
 }
 
 .attributeLabel {
@@ -57,11 +66,11 @@
 #backButton,
 #closeButton {
   margin-right: auto;
-  grid-area: 6 / 1;
+  grid-area: 7 / 1;
 }
 
 #continueButton,
 #confirmButton {
   margin-left: auto;
-  grid-area: 6 / 2;
+  grid-area: 7 / 2;
 }
