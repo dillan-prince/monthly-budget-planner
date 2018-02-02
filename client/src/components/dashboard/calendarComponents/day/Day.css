@@ -1,6 +1,10 @@
 .day {
   height: 10vh;
+  min-height: 10vh;
+  max-height: 10vh;
   width: calc(100% / 7);
+  min-width: calc(100% / 7);
+  max-width: calc(100% / 7);
   padding: 0 3px;
   vertical-align: top;
   font-size: 0.8em;
