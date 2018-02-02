@@ -33,6 +33,8 @@ class AccountDropdown extends Component {
           onChange={this.handleChange.bind(this)}
           disabled={this.props.accounts.length === 1}
           style={{ maxWidth: '220px' }}
+          labelStyle={{ color: 'rgb(56, 152, 60)' }}
+          selectedMenuItemStyle={{ color: 'rgb(56, 152, 60)' }}
         >
           {this.renderAccountDropdownOptions()}
         </SelectField>

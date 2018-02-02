@@ -7,9 +7,12 @@ class Day extends Component {
     const { date, isThisMonth, isToday, value, events } = this.props.day;
 
     return (
-      <td className={`day ${isToday ? 'today' : isThisMonth ? 'thisMonth' : 'otherMonth'}`}>
+      <td
+        className={`day ${isToday ? 'today' : isThisMonth ? 'thisMonth' : 'otherMonth'}`}
+        onClick={() => console.log(this.props.day)}
+      >
         <div className="grid">
-          <div className="date right">{date.getDate()}</div>
+          <div className="date right-align">{date.getDate()}</div>
           <div className={`value left ${value > 0 ? 'green-text' : 'red-text'}`}>
             {this.renderValue(value)}
           </div>
